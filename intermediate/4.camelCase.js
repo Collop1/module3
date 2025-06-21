@@ -1,25 +1,15 @@
 function camelCase(cssProp) {
-    return cssProp
-        .toLowerCase()
-        .split('-')
-        .map((word, index) =>
-            index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
-        )
-        .join('');
+    return cssProp.replace(/-([a-z])/g, (_, char) => char.toUpperCase());
 }
 
 function camelCaseElif(cssProp) {
-    return cssProp
-        .toLowerCase()
-        .split('-')
-        .map((word, index) => {
-            if (index === 0) {
-                return word;
-            } else {
-                return word.charAt(0).toUpperCase() + word.slice(1);
-            }
-        })
-        .join('');
+    // Same logic as camelCase, just written with an if for clarity
+    return cssProp.replace(/-([a-z])/g, function (match, char) {
+        if (char) {
+            return char.toUpperCase();
+        }
+        return '';
+    });
 }
 
 function camelCaseAll(cssProps) {
